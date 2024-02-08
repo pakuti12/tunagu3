@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/fc1e235b2e.js"></script>
+  <link rel="stylesheet" href="{% static 'assets2/style.css' %}">
+  <title>つなぐ | ログイン </title>
+</head>
+
+<body>
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{message.tags}}">
+      <strong>{{message}}</strong>
+  </div>
+   {% endfor %}
+  {% endif %}
+  <script>
+      setTimeout(() => {
+           $('.alert').alert('close')
+      }, 3000);
+  </script>
+  <div id="wrapper">
+    <div class="container">
+      <div class="phone-app-demo"></div>
+      <div class="form-data">
+        <form action="" method="POST">{% csrf_token %}
+            <div class="logo">
+                <h1 style="font-size: 30px; color:red;">ログインする</h1><br><br>
+              </div>
+              ユーザ名 <input type="text" placeholder="ユーザ名" name="username" >
+              パスワード <input type="password" placeholder="Password" name="password"> 
+          
+          <button class="form-btn" type="submit">ログイン</button>
+
+        </form>
+        <div class="sign-up">
+            <a class="password-reset" href="{% url 'reset_password' %}">パスワードが忘れた❓</a>
+        </div>
+        <!-- <div class="sign-up">
+          アカウントがない場合 <a href="{% url 'sign-up' %}">新規登録</a>
+        </div> -->
+
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+
+        <div class="copyright-notice">
+          <p style="font-size: 30px; color:red;">&copy TSUNAGU</p> 
+         </div>
+      </div>
+    </footer>
+</body>
+
+</html>

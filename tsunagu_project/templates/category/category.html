@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<main class="main">
+    <div class="page-header mt-30 mb-75">
+        <div class="container">
+            <div class="archive-header">
+                <div class="row align-items-center">
+                    <div class="col-xl-3">
+                        <h1 class="mb-15">カテゴリー</h1>
+                        <div class="breadcrumb">
+                            <a href="{% url 'home' %}" rel="nofollow"><i class="fi-rs-home mr-5"></i>ホームページ</a>
+                            <span></span> カテゴリー
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="shop-product-fillter mb-50 pr-30">
+                        <div class="totall-product">
+                            
+                            <h2>
+                                <img class="w-36px mr-10" src="assets/imgs/theme/icons/category-1.svg" alt="" />
+                                <!-- カテゴリの数 -->
+                                <!-- count: 数 -->
+                                {{categories.count}} 個カテゴリーがあります
+                            </h2>
+                        </div>
+                       
+                    </div>
+                    <div class="hello">
+
+                    </div>
+                    <div class="loop-grid pr-30">
+                        <div class="row">
+                            <!-- カテゴリを -->
+                            {% for c in categories %}
+                            <article class="col-xl-4 col-lg-6 col-md-6 text-center hover-up mb-30 animated">
+                                <div class="post-thumb">
+                                    <a href="{% url 'category-post-list' c.cid %}">
+                                        <img style="height: 300px; width: 300px; object-fit: cover;" class="border-radius-15" src="{{c.image.url}}" alt="" />
+                                    </a>
+                                    <div class="entry-meta">
+                                        <a class="entry-meta meta-2" href="blog-category-grid.html"><i class="fi-rs-heart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="entry-content-2">
+                                    <!-- <h6 class="mb-10 font-sm"><a class="entry-meta text-muted" href="blog-category-grid.html">Side Dish</a></h6> -->
+                                    <h4 class="post-title mb-15">
+                                        <a href="{% url 'category-post-list' c.cid %}">{{ c.title }}</a>
+                                    </h4>
+                                    <div class="entry-meta font-xs color-grey mt-10 pb-10">
+                                        <div>
+                                            <span class="hit-count mr-10">{{c.category.count}} パッケージ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            {% endfor %}
+                        </div>
+                    </div>
+                     
+                </div>
+                <div class="col-lg-3 primary-sidebar sticky-sidebar">
+                    <!-- <div class="widget-area">
+                        <div class="sidebar-widget-2 widget_search mb-50">
+                            <div class="search-form">
+                                <form action="#">
+                                    <input type="text" placeholder="Search…" />
+                                    <button type="submit"><i class="fi-rs-search"></i></button>
+                                </form>
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
